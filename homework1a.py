@@ -1,5 +1,6 @@
 import plotly.express as px
 import pandas as pd
+from plotly.offline import plot
 
 def spar_funktion(AK, SR, r, lz):
     kapital = AK # Anfangskapital
@@ -35,10 +36,13 @@ d = {'Zeit': range(1, 11),
 df = pd.DataFrame(data=d)
 
 # Zum Schluss erstellen wir das Balkendiagramm mit Plotly
-px.bar(df,
+fig = px.bar(df,
        x = "Zeit",
        y = ["Einzahlungen", "Zinsen"],
        labels = {"value": "Euro",
                  "Zeit": "Jahr",
                  "variable": "Kapital"},
        title = "Sparplan")
+
+# Speichern und öffnen das Plotly-Diagramm als .html-Datei
+plot(fig, filename='homework1a.html')
